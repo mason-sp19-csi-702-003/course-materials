@@ -1,0 +1,43 @@
+---
+name: csi702
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - autopep8
+  - cython
+  - ipywidgets
+  - jedi
+  - jupyter
+  - jupyterlab
+  - jupyter_contrib_nbextensions
+  - jupyter_nbextensions_configurator
+  - matplotlib
+  - nodejs=10.13.0=he6710b0_0
+  - numpy
+  - pandas
+  - pandoc=2.5=1
+  - python=3.7.2
+  - rise
+  - scipy
+  - seaborn
+  - xeus-cling
+  - pip:
+    - black
+    - cite2c
+    - flake8
+    - grip
+    - importmagic
+    - ipympl
+    - jupyterlab_code_formatter
+    - jupyterlab_git
+    - jupyterlab_github
+    - jupyterlab_templates
+    - nb_pdf_template
+    - nbdime
+    - pip==19.0.1
+    - pydocstyle
+    - PyHamcrest
+    - rope
+    - rpy2
+...
