@@ -1,0 +1,77 @@
+---
+title: |
+  CSI 702 course materials
+  <img src="img/course-logo-semester-square-section-003.svg" align="right" height=150>
+date: Spring 2019 semester
+output: github_document
+---
+
+```{r setup, include = FALSE}
+source("../R/rmarkdown_setup.R")
+options(knitr.kable.NA = "")
+schedule <- readr::read_csv("../data/schedule.csv")
+homeworks <- readr::read_csv("../data/homeworks.csv")
+final_project <- readr::read_csv("../data/final_project.csv")
+software <- readr::read_csv("../data/software.csv")
+```
+
+*   [Syllabus](#syllabus)
+*   [Schedule](#schedule)
+*   [Homeworks](#homeworks)
+*   [Final project](#final-project)
+*   [Resources and links](#resources-and-links)
+    *   [Software](#software)
+*   [License](#license)
+
+## Syllabus
+
+The syllabus is available as a Google Doc: https://docs.google.com/document/d/14qsCAP9Dei89EobiOC-nGDpM-ER4hlDY9fGw-Ylau3k
+
+## Schedule
+
+```{r schedule, echo = FALSE}
+knitr::kable(
+  x = schedule,
+  format = "pandoc",
+)
+```
+
+## Homeworks
+
+```{r homeworks, echo = FALSE}
+knitr::kable(
+  x = homeworks,
+  format = "pandoc",
+  align = "rll"
+)
+```
+
+## Final project
+
+```{r final-project, echo = FALSE}
+knitr::kable(
+  x = final_project,
+  format = "pandoc"
+)
+```
+
+## Resources and links
+
+### Software
+
+```{r software, echo = FALSE, results = 'asis'}
+knitr::kable(
+  x = software,
+  format = "html",
+  escape = FALSE
+)
+```
+
+## License
+
+[![Creative Commons License][cc-by-sa-4-img]][cc-by-sa-4]
+
+Unless otherwise noted, the course materials in this repository are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License][cc-by-sa-4].
+
+[cc-by-sa-4]:                http://creativecommons.org/licenses/by-sa/4.0/
+[cc-by-sa-4-img]:            https://i.creativecommons.org/l/by-sa/4.0/88x31.png
