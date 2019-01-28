@@ -1,6 +1,6 @@
 include ../make.inc
 
-DIRS	=
+DIRS	=	homework
 
 MD		=	$(ROOTDIR)/README.md
 MD_EXT	=	$(ROOTDIR)/%.md : %.Rmd
