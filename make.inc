@@ -43,6 +43,7 @@ BUILD_DIR					=	$(ROOTDIR)/build
 CLASS_NUMBER				=
 OUTPUT_DIR					=	$(patsubst %/,%,$(BUILD_DIR)/$(CLASS_NUMBER))
 HOMEWORK_DIR				=	$(patsubst %/,%,$(ROOTDIR)/homework)
+GUIDES_DIR					=	$(patsubst %/,%,$(ROOTDIR)/guides)
 FINAL_PROJECT_DIR			=	$(patsubst %/,%,$(ROOTDIR)/project)
 
 MD_OUTPUT					=	github_document

@@ -1,0 +1,278 @@
+HOWTO — Setting up your virtual machine
+================
+
+  - [Installing Virtualbox and Vagrant](#installing-virtualbox-and-vagrant)
+      - [Windows](#windows)
+      - [macOS](#macos)
+      - [Ubuntu](#ubuntu)
+  - [Provisioning the virtual machine](#provisioning-the-virtual-machine)
+  - [Install conda environment](#install-conda-environment)
+  - [Basic usage](#basic-usage)
+  - [References](#references)
+
+## Installing Virtualbox and Vagrant
+
+### Windows
+
+Instructions below adapted from Ref. \[[1](#if-curious-then-learn-blog)\].
+
+1.  Install the latest versions of the following software:
+    
+      - **Git:** <https://git-scm.com/downloads>. Near the end of the install, select the option `Windows Explorer integration` so that `Git Bash Here` is added to your right-click menu.
+    
+      - **Virtualbox:** <https://www.virtualbox.org/wiki/Downloads>. The default settings are fine.
+    
+      - **Vagrant:** <https://www.vagrantup.com/downloads.html>. The default settings are fine.
+    
+    After installing Vagrant, you will need to reboot your computer.
+
+2.  Open Git bash by right-clicking your desktop or the white space inside a folder (Windows file explorer) and clicking `Git Bash Here`:
+    
+    ![Windows 10 menu with Git Bash Here option](/img/windows10_git_bash_here.jpg)
+    
+    If this is your first time using `git` on your Windows machine, you should set your user information by running these two commands:
+    
+    ``` sh
+    git config --global user.name "FirstName LastName"
+    git config --global user.email "username@emailservice.com"
+    ```
+    
+    Replace `FirstName LastName` and `username@emailservice.com` with your own information.
+
+### macOS
+
+Open a terminal window and follow the instructions below. Instructions adapted from Ref. \[[2](#macos-setup-instructions)\].
+
+1.  Xcode must be installed before you can do anything else.
+    You can install Xcode by either downloading it from Apple’s website, <https://developer.apple.com/xcode/>, or by running the following command in the terminal:
+    
+    ``` sh
+    xcode-select --install
+    ```
+
+2.  (Possibly optional) Install XQuartz by downloading the `dmg` file from the project’s website: <https://www.xquartz.org/>
+
+3.  Install Homebrew if it is not currently installed on your computer:
+    
+    ``` sh
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    ```
+    
+    Check your `$HOME/.bash_profile` file and see if `/usr/local/bin` is set in your `$PATH` environment variable.
+    **If it is not**, run `echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.bash_profile` to append a command that will set it.
+    **Close and reopen your terminal window after doing this**.
+    
+    To check that everything is working, run `brew doctor`.
+    For basic information on what you can do with Homebrew, see this page: <http://sourabhbajaj.com/mac-setup/Homebrew/Usage.html>.
+
+4.  Install Homebrew-Cask if it is not already installed:
+    
+    ``` sh
+    brew tap caskroom/cask
+    ```
+
+5.  Install `git` using Homebrew:
+    
+    ``` sh
+    brew install git
+    ```
+
+6.  If this is your first time using `git`, you should set your user information by running these two commands:
+    
+    ``` sh
+    git config --global user.name "FirstName LastName"
+    git config --global user.email "username@emailservice.com"
+    ```
+    
+    Replace `FirstName LastName` and `username@emailservice.com` with your own information.
+
+7.  Install Virtualbox using Homebrew-Cask:
+    
+    ``` sh
+    brew cask install virtualbox
+    ```
+
+8.  Install Vagrant using Homebrew-Cask:
+    
+    ``` sh
+    brew cask install vagrant
+    brew cask install vagrant-manager
+    ```
+
+### Ubuntu
+
+1.  Install `git` and `openssh-client` if you haven’t already:
+    
+    ``` sh
+    sudo apt-get update
+    sudo apt-get install git openssh-client
+    ```
+
+2.  If this is your first time using `git`, you should set your user information by running these two commands:
+    
+    ``` sh
+    git config --global user.name "FirstName LastName"
+    git config --global user.email "username@emailservice.com"
+    ```
+    
+    Replace `FirstName LastName` and `username@emailservice.com` with your own information.
+
+3.  Install the latest version of Virtualbox:
+    
+    ``` sh
+    wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
+    wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
+    sudo add-apt-repository "deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian $(lsb_release -cs) contrib"
+    sudo apt-get update
+    sudo apt-get install virtualbox-6.0
+    ```
+
+4.  Install the latest version of Vagrant:
+    
+    ``` sh
+    # Install gdebi if you haven't done so already
+    sudo apt-get install gdebi
+    # Download Vagrant
+    wget https://releases.hashicorp.com/vagrant/2.2.3/vagrant_2.2.3_x86_64.deb
+    # Install Vagrant with gdebi
+    sudo gdebi vagrant_2.2.3_x86_64.deb
+    ```
+
+## Provisioning the virtual machine
+
+1.  Create a folder for the class, for example:
+    
+    ``` sh
+    mkdir -p ~/Documents/class/csi702
+    ```
+    
+    This will be the root folder for the virtual machine, so all files and directories related to the class will go under this folder.
+
+2.  In your terminal window, navigate to the class folder you created in the previous step.
+    Then, copy and paste the script below into your terminal window and run it to download the latest version of the files you’ll use to provision the virtual machine:
+    
+    ``` bash
+    $(GIST_URL=https://gist.githubusercontent.com/jkglasbrenner/a51b4de9a1088c7d8f6b5c5983738851/raw; \
+      for gist_file_name in ansible.cfg DESCRIPTION environment.yml Makefile playbook.yml \
+        requirements.yml Vagrantfile; \
+        do \
+          curl -OL ${GIST_URL}/${gist_file_name}; \
+        done)
+    ```
+    
+    If you have trouble getting the above script ot work, you can also navigate to the GitHub Gist <https://gist.github.com/jkglasbrenner/a51b4de9a1088c7d8f6b5c5983738851>, click `Download ZIP` and save the file to your class folder.
+    Extract the file contents directly into the folder.
+    If the files were unzipped into a new directory, move them into the class folder.
+    Regardless of the method, you should now see the following files in your class folder:
+    
+    ``` 
+    /path/to/class/folder
+    ├── ansible.cfg
+    ├── DESCRIPTION
+    ├── environment.yml
+    ├── Makefile
+    ├── playbook.yml
+    ├── requirements.yml
+    └── Vagrantfile  
+    ```
+    
+    **Do not delete these files after setup.**
+
+3.  Download the official base image for Ubuntu 18.04:
+    
+    ``` sh
+    vagrant box add ubuntu/bionic64
+    ```
+
+4.  Provision your virtual machine by running
+    
+    ``` sh
+    vagrant up
+    ```
+    
+    **This will take a while.**
+    Please note that this step needs to be done from within the class folder where you stored all the unzipped files.
+
+5.  After the provisioning is complete, you can connect to the virtual machine by running
+    
+    ``` sh
+    vagrant ssh
+    ```
+
+## Install conda environment
+
+1.  After connecting to your virtInstall conda environmentual machine with `vagrant ssh`, run the following commands to set up your conda environment:
+    
+    ``` sh
+    cd /vagrant
+    make all
+    ```
+    
+    **This will take several minutes to complete.**
+
+2.  After `make all` is done, run:
+    
+    ``` sh
+    make clean
+    ```
+    
+    This will remove anaconda’s temporary files and free up some of your virtual disk space.
+
+## Basic usage
+
+After you install the conda environment, you are ready to start using your virtual machine in CSI 702.
+Below are a few tips and reminders that are specific to using a Vagrant-provisioned virtual machine.
+Otherwise, you are expected to be familiar with the basics of using a full Linux environment and navigating via the command line.
+
+  - The steps in the [Install conda environment](#install-conda-environment) section created a conda virtual environment named `csi702`.
+    To activate it, run:
+    
+    ``` sh
+    conda activate csi702
+    ```
+
+  - The `/vagrant` directory is a shared folder.
+    If you followed the above directions, you should see any files and folders inside the class directory you created earlier.
+
+  - You can serve a Jupyter Lab instance from within the virtual machine and access it using your host OS’s web browser.
+    The easy way to do this is:
+    
+    ``` sh
+    cd /vagrant
+    make lab
+    ```
+    
+    Open your web browser (Google Chrome or Firefox are recommended) and type `localhost:8888` in your address bar and press <kbd>Enter</kbd>.
+    To stop the Jupyter Lab instance, just press <kbd>Ctrl</kbd>+<kbd>C</kbd> and answer `y` to the disconnect prompt.
+
+  - To disconnect from your virtual machine, run:
+    
+    ``` sh
+    logout
+    ```
+
+  - The virtual machine will run in the background of your computer until you shut it down.
+    To shut down the virtual machine, from the class folder, run:
+    
+    ``` sh
+    vagrant halt
+    ```
+    
+    This can only be done **after** you’ve disconnected with `logout`.
+
+  - To restart the virtual machine after running `vagrant halt`, from the class folder, run:
+    
+    ``` sh
+    vagrant up
+    ```
+
+  - To remove the virtual machine from your computer, from the class folder, run
+    
+    ``` sh
+    vagrant destroy
+    ```
+
+## References
+
+<a name="if-curious-then-learn-blog"></a>\[1\] <http://ifcuriousthenlearn.com/blog/2015/08/18/vagrant-linux/><br>
+<a name="macos-setup-instructions"></a>\[2\] <http://sourabhbajaj.com/mac-setup/>
