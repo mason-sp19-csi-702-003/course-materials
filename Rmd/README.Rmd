@@ -20,6 +20,7 @@ software <- readr::read_csv("../data/software.csv")
 *   [Homeworks](#homeworks)
 *   [Final project](#final-project)
 *   [Resources and links](#resources-and-links)
+    *   [Links](#links)
     *   [Guides](#guides)
     *   [Software](#software)
 *   [License](#license)
@@ -58,6 +59,14 @@ knitr::kable(
 
 ## Resources and links
 
+### Links
+
+*   [Blackboard page for CSI 702 (Spring 2019)][gmu-blackboard] - The Blackboard page for this course.
+*   [Slack workspace for CSI 702 (Spring 2019)][sp19-masoncsi702-slack] - The Slack workspace for this course.
+*   [XSEDE Course on Moodle][xsede-moodle] - The platform used to distribute the online components of this course.
+*   [CS267 — Applications of Parallel Computers (Spring 2019)][cs267-apc-course] - Course website for the Spring 2019 semester of UC Berkeley's Applications of Parallel Computers course.
+    The online XSEDE Moodle course is based on this course.
+
 ### Guides
 
 *   [HOWTO — Setting up your virtual machine][howto-vm-setup] - How to provision a virtual machine to use as your development environment in CSI 702.
@@ -78,6 +87,10 @@ knitr::kable(
 
 Unless otherwise noted, the course materials in this repository are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License][cc-by-sa-4].
 
-[cc-by-sa-4]:     http://creativecommons.org/licenses/by-sa/4.0/
-[cc-by-sa-4-img]: https://i.creativecommons.org/l/by-sa/4.0/88x31.png
-[howto-vm-setup]: /guides/howto_provision_virtual_machine.md
+[cc-by-sa-4]:             http://creativecommons.org/licenses/by-sa/4.0/
+[xsede-moodle]:           https://moodle.xsede.org
+[cc-by-sa-4-img]:         https://i.creativecommons.org/l/by-sa/4.0/88x31.png
+[gmu-blackboard]:         https://mymasonportal.gmu.edu/webapps/blackboard/execute/courseMain?course_id=_355479_1
+[howto-vm-setup]:         /guides/howto_provision_virtual_machine.md
+[cs267-apc-course]:       https://sites.google.com/lbl.gov/cs267-spr2019/
+[sp19-masoncsi702-slack]: https://sp19-masoncsi702.slack.com/

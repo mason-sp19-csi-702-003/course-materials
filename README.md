@@ -8,6 +8,7 @@ Spring 2019 semester
   - [Homeworks](#homeworks)
   - [Final project](#final-project)
   - [Resources and links](#resources-and-links)
+      - [Links](#links)
       - [Guides](#guides)
       - [Software](#software)
   - [License](#license)
@@ -66,6 +67,14 @@ The syllabus is available as a Google Doc: <https://docs.google.com/document/d/1
 
 ## Resources and links
 
+### Links
+
+  - [Blackboard page for CSI 702 (Spring 2019)](https://mymasonportal.gmu.edu/webapps/blackboard/execute/courseMain?course_id=_355479_1) - The Blackboard page for this course.
+  - [Slack workspace for CSI 702 (Spring 2019)](https://sp19-masoncsi702.slack.com/) - The Slack workspace for this course.
+  - [XSEDE Course on Moodle](https://moodle.xsede.org) - The platform used to distribute the online components of this course.
+  - [CS267 — Applications of Parallel Computers (Spring 2019)](https://sites.google.com/lbl.gov/cs267-spr2019/) - Course website for the Spring 2019 semester of UC Berkeley’s Applications of Parallel Computers course.
+    The online XSEDE Moodle course is based on this course.
+
 ### Guides
 
   - [HOWTO — Setting up your virtual machine](/guides/howto_provision_virtual_machine.md) - How to provision a virtual machine to use as your development environment in CSI 702.
@@ -106,7 +115,29 @@ Description
 
 <td style="text-align:left;">
 
-[CLion<br>![CLion](/img/clion-logo.svg)](https://jetbrains.com/clion)
+[Slack<br>(standalone app)<br>![Slack](/img/slack.svg)](https://slack.com/downloads)
+
+</td>
+
+<td style="text-align:left;">
+
+Windows<br>macOS<br>Linux<br>iOS<br>Android
+
+</td>
+
+<td style="text-align:left;">
+
+Slack is the primary communication medium for the course, replacing email and serving as a general-purpose discussion board.
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+[CLion<br>![CLion](/img/clion.png)](https://jetbrains.com/clion)
 
 </td>
 
