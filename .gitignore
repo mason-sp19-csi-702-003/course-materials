@@ -4,6 +4,9 @@
 # BEGIN ignore project files
 # --------------------------
 
+examples/bin/
+examples/build/
+
 # --------------------------
 # BEGIN ignore basic files
 # --------------------------
