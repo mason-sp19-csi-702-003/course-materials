@@ -1,0 +1,8 @@
+github_document:
+  dev: svg
+  df_print: kable
+  html_preview: false
+  pandoc_args:
+    - --webtex
+    - --wrap=preserve
+    - --columns=88

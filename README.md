@@ -8,6 +8,7 @@ Spring 2019 semester
   - [Homeworks](#homeworks)
   - [Final project](#final-project)
   - [Resources and links](#resources-and-links)
+      - [Guides](#guides)
       - [Software](#software)
   - [License](#license)
 
@@ -65,6 +66,10 @@ The syllabus is available as a Google Doc: <https://docs.google.com/document/d/1
 
 ## Resources and links
 
+### Guides
+
+  - [HOWTO — Setting up your virtual machine](/guides/howto_provision_virtual_machine.md) - How to provision a virtual machine to use as your development environment in CSI 702.
+
 ### Software
 
 <table>
@@ -101,7 +106,7 @@ Description
 
 <td style="text-align:left;">
 
-[CLion<br>![CLion](img/clion-logo.svg)](https://jetbrains.com/clion)
+[CLion<br>![CLion](/img/clion-logo.svg)](https://jetbrains.com/clion)
 
 </td>
 
@@ -123,7 +128,7 @@ A cross-platform integrated development environment (IDE) designed specifically 
 
 <td style="text-align:left;">
 
-[GitHub Desktop<br>![GitHub Desktop](img/github-desktop-logo.svg)](https://desktop.github.com)
+[GitHub Desktop<br>![GitHub Desktop](/img/github-desktop-logo.svg)](https://desktop.github.com)
 
 </td>
 
@@ -152,6 +157,94 @@ A graphical interface for interacting with GitHub, built by GitHub. [The Linux-c
 </li>
 
 </ul>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+[Virtualbox<br>![Virtualbox](/img/virtualbox.png)](https://www.virtualbox.org/wiki/Downloads)
+
+</td>
+
+<td style="text-align:left;">
+
+Windows<br>macOS<br>Linux
+
+</td>
+
+<td style="text-align:left;">
+
+VirtualBox is a cross-platform virtualization application that allows you to run multiple OSes, inside multiple virtual machines, at the same time.
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+[Vagrant<br>![Vagrant](/img/vagrant.svg)](https://www.vagrantup.com/downloads.html)
+
+</td>
+
+<td style="text-align:left;">
+
+Windows<br>macOS<br>Linux
+
+</td>
+
+<td style="text-align:left;">
+
+Vagrant is a tool for building and managing virtual machine environments in a single workflow using simple configuration files. We will use it to provision Virtualbox-based virtual machines.
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+[Intel MKL<br>![MKL](/img/intel.png)](https://software.intel.com/en-us/mkl/choose-download)
+
+</td>
+
+<td style="text-align:left;">
+
+Windows<br>macOS<br>Linux
+
+</td>
+
+<td style="text-align:left;">
+
+A library that features highly optimized, threaded, and vectorized math functions that maximize performance on each processor family. It uses industry-standard C and Fortran APIs for compatibility with popular BLAS, LAPACK, and FFTW functions.
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+[NVIDIA CUDA Toolkit<br>![MKL](/img/nvidia_cuda.png)](https://developer.nvidia.com/cuda-downloads)
+
+</td>
+
+<td style="text-align:left;">
+
+Windows<br>macOS<br>Linux
+
+</td>
+
+<td style="text-align:left;">
+
+A toolkit for developing, optimizing and deploying your applications on GPU-accelerated embedded systems, desktop workstations, enterprise data centers, cloud-based platforms and HPC supercomputers. Includes GPU-accelerated libraries, debugging and optimization tools, a C/C++ compiler and a runtime library to deploy your application.
 
 </td>
 
