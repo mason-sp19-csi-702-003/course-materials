@@ -1,0 +1,267 @@
+Homework 2 — Parallelizing a Particle Simulation
+================
+Due: March 9, 2019 @ 11:59pm
+
+**Part A: Optimizing the serial code**
+
+[GitHub classroom repository: click here to get your team’s starter fiels](https://classroom.github.com/g/8hZTAA3_)
+
+## Problem statement
+
+Your goal is to parallelize on XSEDE’s
+[Bridges](https://portal.xsede.org/psc-bridges) supercomputer a toy particle
+simulator (similar particle simulators are used in
+[mechanics](http://www.thp.uni-duisburg.de/~kai/index_1.html),
+[biology](http://www.ks.uiuc.edu/Research/namd/),
+[astronomy](http://www.mpa-garching.mpg.de/gadget/clusters/index.html), etc.)
+that reproduces the behaviour shown in the following animation:
+
+![Animation of particle simulation](/img/animation.gif)
+
+The range of interaction forces *(cutoff)* is limited as shown in grey for a
+selected particle. Density is set sufficiently low so that given *n* particles,
+only *O(n)* interactions are expected.
+
+Suppose we have a code that runs in time *T = O(n)* on a single processor. Then
+we’d hope to run in time *T/p* when using *p* processors. We’d like you to
+write parallel codes that approach these expectations.
+
+## Correctness and Performance
+
+A simple correctness check which computes the minimal distance between 2
+particles during the entire simulation is provided. A correct simulation
+will have particles stay at greater than *0.4* (of cutoff) with typical
+values between *0.7-0.8*. A simulation were particles don’t interact
+correctly will be less than *0.4* (of cutoff) with typical values
+between *0.01-0.05* . More details as well as an average distance are
+described in the source file.
+
+The code we are providing will do this distance check based on the calls
+to the interaction function but the full autograder will do the checks
+based on the outputted txt file. We’d recommend keeping the correctness
+checker in your code, but depending on performance desires it can be
+deleted as long as the simulation can still output a correct txt file.
+
+The performance of the code is determined by doing multiple runs of the
+simulation with increasing particle numbers and then running a benchmarking
+script written in Python on the simulation outputs. This can be done
+automatically with the *auto-\** scripts.
+
+### Important note for Performance:
+
+While the scripts we are providing have small numbers of particles (500-1000)
+to allow for the *O(n<sup>2</sup>)* algorithm to finish
+execution, the final codes will be tested with values 100 times larger
+(50000-100000) to better see their performance.
+
+## Grading
+
+25% of your grade will be based on your code’s efficiency, and 75% of your grade will depend on your report.
+
+**Serial Code** performance will be tested via fitting multiple runs of the
+code to a line on a log/log plot and calculating the slope of that line. This
+will determine whether your code is attaining the *O(n)* desired complexity
+versus the starting *O(n<sup>2</sup>)*. With an achieved result of
+*O(n<sup>x</sup>)* you will receive
+
+  - If *x* is between 2 and 1.5 you will receive a serial score between 0 and
+    90 proportional to *x*. (Ex:1.75 gives a score of 45)
+
+  - If *x* is between 1.5 and 1.4 you will receive a serial score between 90
+    and 100 proportional to *x*. (Ex:1.44 gives a score of 96)
+
+  - If *x* is below 1.4 you will receive a serial score of 100.
+
+## Report
+
+This homework will be completed in groups, and each group must submit a single joint report.
+
+The report is to be written in a style appropriate for an academic journal with any relevant citations provided in a bibliography. The report should only discuss the details of the final version of your submitted code. The report is to contain the following:
+
+1.  An introduction to the problem
+
+2.  A section detailing how you optimized the code. This requires both a conceptual discussion,
+    for example how you partitioned the space in the problem (figures are helpful\!), and a code summary, where you explain each important step in your solution (this should be supported with code snippets).
+
+3.  A benchmark section where you show how your code performs against the naive implementation,
+    and how it scales with respect to the appropriate parameters.
+    Figures are helpful when reporting this data\!
+    Benchmark data should be taken from runs performed on Bridges, not your local computer or laptop.
+    Make sure you discuss the reason for any odd behavior in the reported performance.
+
+Your report should be converted to the PDF format prior to submission.
+The filename should follow this format: `Team#_hw2a.pdf`.
+
+## How to submit
+
+Put your report file `Team#_hw2a.pdf` into the `doc/` directory in your GitHub repository, and save, commit, and push the report and the final version of your code into the master branch.
+Do not push the `particles` binary or any temporary files (such as `.o` files) to GitHub (the `.gitignore` file is meant to help prevent this).
+After everything is pushed and up-to-date, do the following:
+
+1.  Have **one** group member upload the report PDF to the Homework 2a assignment posted on Blackboard.
+
+2.  Have **each** group member navigate to the group’s repository on the GitHub website, click the green `Clone or download` button, and click **Download ZIP**.
+    Rename the zipfile to `Team#_hw2a.zip` (replace `#` with your team’s number) and upload it to the [Moodle](https://moodle.xsede.org) site.
+
+## Source code
+
+You will start with the serial implementation supplied below, which runs in *O(n<sup>2</sup>)* time,
+which is unacceptably inefficient.
+
+  - **src/cli.cpp** (DO NOT EDIT) and **vendor/CLI/CLI11.hpp** (DO NOT EDIT)
+    
+      - Unified interface for defining and controlling command-line options
+
+  - **src/serial.cpp** and **src/serial.hpp**
+    
+      - a serial implementation
+
+  - **src/common.cpp** and **src/common.hpp**
+    
+      - an implementation of common functionality, such as I/O, numerics and timing
+
+  - **CMakeLists.txt** (DO NOT EDIT) and **src/CMakeLists.txt**
+    
+      - cmake configuration files for compiling your code. Compiler flags and the full list of source files to compile can be edited in **src/CMakeLists.txt**.
+
+  - **job-bridges-serial**
+    
+      - sample batch files to launch jobs on Bridges. Use *sbatch* to submit on Bridges. Use these files to check correctness
+
+  - **auto-bridges-serial**
+    
+      - sample batch files to launch autograder jobs on Bridges. Use *sbatch* to submit on Bridges. Use these files to check performance
+
+  - **scripts/hw2-visualize/animate.py**
+    
+      - A Python script for animating the particle trajectories generated by the simulation. Requires a recent version of Anaconda to be installed. Imagemagick must also be installed to generate animated gif files. `ffmpeg` must also be installed to render mp4 movie files. Look in **job-bridges-serial** for an example on how to generate the animations.
+
+  - **scripts/hw2-autograder/hw2-autograder.py**
+    
+      - A Python script for grading the scaling of your code. Requires a recent version of Anaconda to be installed. Look in **auto-bridges-serial** for an example on how to run the autograder.
+
+## Logging in to Bridges
+
+The easiest way to access the machines is to login directly with your own ssh client to **login.xsede.org** and from there **gsissh** into the correct machine.
+You need to set up two-factor authentication with Duo in order to use the single sign-on hub.
+More information on is available here on the [single login system](https://portal.xsede.org/web/xup/single-sign-on-hub).
+
+An example of logging on to XSEDE would be to first connect to the single sign-on hub:
+
+    ssh XSEDE-username@login.xsede.org
+
+Enter your password and complete the 2-factor authentication request.
+Then, run the following to hop over to Bridges:
+
+    gsissh bridges
+
+Another way to login to XSEDE resources is via the [Accounts tab](https://portal.xsede.org/group/xup/accounts) in XSEDE User Portal.
+To reach this page login to XSEDE User Portal, navigate to MY XSEDE tab and from there select the Accounts page.
+All machines you have access to will have a **login** option next to them that will launch OpenSSH via a Java Applet.
+
+Please be aware that most XSEDE resources are not available via direct ssh and all requests must go through the XSEDE single login system.
+
+To clone the files from your Github copy, use the following command:
+
+    git clone git@github.com:mason-sp19-csi-702-003/homework-2a-YOURTEAMNAME.git
+
+## Compiling the code
+
+Instead of a regular Makefile, compilation is handled via CMake.
+For your convenience, a simple script file named `make.sh` is included that will automatically compile your code on Bridges.
+From the root directory of this repository, simply run:
+
+    ./make.sh
+
+Your code should compile, and the compiled binary will be placed into a folder called `bin/`.
+Running this after you make a change to the code will recompile the changed file and update the binary.
+
+If you are developing on your local computer using the virtual machine, you can compile the code by running:
+
+    ./make.sh vm
+
+If you aren’t using the virtual machine, then the wrapper script might not work and you’ll need to run CMake manually.
+If you are unfamiliar with how to use CMake, you can open `make.sh` with your text editor to get an idea of how to use it.
+
+## Submitting and running the code
+
+The jobs queue on Bridges is managed via the [SLURM scheduler](https://slurm.schedmd.com/documentation.html).
+To submit a job, use the `sbatch` command like so:
+
+    sbatch job-bridges-serial
+
+To check the status of your running jobs you can use the following command:
+
+    squeue -u $USER
+
+Append a `-l` flag will print additional information about the running jobs.
+If you want even more information, consider using the `sacct` command, for example:
+
+    sacct -j $JOBID --format JobID,ReqMem,MaxRSS,TotalCPU,State
+
+where `$JOBID` is the ID number of the job.
+
+If you want to cancel a job, run:
+
+    scancel $JOBID
+
+If you would like to receive emails for job submissions add the following lines to the submission scripts.
+This sometimes helps tracking down issues.
+
+    #SBATCH --mail-type=ALL
+    #SBATCH --mail-user=youremailaddress
+
+For more details on SLURM commands please see [Bridges documentation page](https://portal.xsede.org/psc-bridges#jobs).
+
+Finally, there is an interactive mode that allows you to request computing nodes, but maintain a command line.
+This is ideal for prototyping and debugging purposes.
+To activate this mode, type
+
+    interact -N 1
+
+The `interact.sh` script included in the repository provides you with a reminder on how to activate the interactive session.
+For additional information, [read the documentation on interactive sessions](https://portal.xsede.org/psc-bridges#jobs:interactive).
+
+## CLI interface
+
+When testing the code on a local computer or within an interactive session on Bridges, you will use a simple command-line interface to launch the simulation.
+For Part A, there is only one runtime mode: “serial”.
+The “serial” mode is also the default.
+
+Running `./bin/particles -h` will bring up the help:
+
+    Usage: ./bin/particles [OPTIONS] [mode]
+    
+    Positionals:
+      mode TEXT in {serial}
+    
+    Particle simulation run modes
+      serial:   (default) Serial version of simulation.
+    
+    Options:
+      -h,--help                   Print this help message and exit
+      -n INT=1000                 Set the number of particles
+      -o,--output TEXT            Specify the output file name
+      -s,--summary TEXT           Specify the summary file name
+      --no                        Turn off all correctness checks and outputs
+
+The most important options are `-n`, `-o`, and `-s`.
+The `-n` option lets you control the number of particles in the simulation.
+The `-o` option lets you output a history of the particle positions to a file, which can be used to generate an animated gif or mp4 file.
+The `-s` option lets you save the amount of time it takes to run a simulation for a given number of particles to a file. If the file exists, then new benchmark results are appended to the end of the file. The summary file will be used to compute your code grade.
+
+For example, to run a particle simulation with 2000 particles that outputs the benchmark summary data to a file named `serial_summary.txt`, you would run:
+
+    ./bin/particles -n 2000 -s serial_summary.txt
+
+## File transfer
+
+When copying files to and from Bridges, [you can use `scp` in conjunction with `data.bridges.psc.edu`](https://portal.xsede.org/psc-bridges#transfer:tfa) to avoid having to copy your files to Single Site Login node first.
+**This will work with the Two-Factor Authentication setup.**
+Try running the following to copy files directly to Bridges:
+
+    scp -P 2222 myfile XSEDE-username@data.bridges.psc.edu:/path/to/file
+
+To copy from Bridges:
+
+    scp -P 2222 XSEDE-username@data.bridges.psc.edu:/path/to/file myfile

@@ -1,6 +1,6 @@
 Homework 1 — Optimize Matrix Multiplication
 ================
-Due: February 18, 2019 @ 11:59pm
+Due: February 23, 2019 @ 11:59pm
 
 [GitHub classroom repository: click here to get your starter files](https://classroom.github.com/a/MlPbfw3T)
 
