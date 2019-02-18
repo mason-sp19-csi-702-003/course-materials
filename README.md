@@ -48,14 +48,14 @@ The syllabus is available as a Google Doc: <https://docs.google.com/document/d/1
 
 ## Homeworks
 
-| \# | Description                                                | Due date         |
-| -: | :--------------------------------------------------------- | :--------------- |
-|  0 | [Describing a Parallel Application](homework/homework0.md) | Feb-1 @ 11:59pm  |
-|  1 | [Optimize Matrix Multiplication](homework/homework1.md)    | Feb-18 @ 11:59pm |
-|  2 | Parallelizing a particle simulation (Part 1)               | Mar-8 @ 11:59pm  |
-|  3 | Parallelizing a particle simulation (Part 2)               | Mar-22 @ 11:59pm |
-|  4 | Parallelizing a particle simulation (Part 3)               | Apr-1 @ 4:00pm   |
-|  5 | Parallelizing Genome Assembly                              | Apr-26 @ 11:59pm |
+| \# | Description                                                            | Due date         |
+| -: | :--------------------------------------------------------------------- | :--------------- |
+|  0 | [Describing a Parallel Application](homework/homework0.md)             | Feb-1 @ 11:59pm  |
+|  1 | [Optimize Matrix Multiplication](homework/homework1.md)                | Feb-23 @ 11:59pm |
+|  2 | [Parallelizing a particle simulation (Part A)](homework/homework2a.md) | Mar-9 @ 11:59pm  |
+|  3 | Parallelizing a particle simulation (Part B)                           | Mar-30 @ 11:59pm |
+|  4 | Parallelizing a particle simulation (Part C)                           | Apr-13 @ 11:59pm |
+|  5 | Parallelizing Genome Assembly                                          | May-3 @ 11:59pm  |
 
 ## Final project
 
