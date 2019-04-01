@@ -13,7 +13,7 @@
   }
 
 __global__ void stencil_1d(int *in, int *out) {
-  __shared__ int temp[/* WHAT SIZE? */];
+  __shared__ int temp[BLOCK_SIZE + 2 * RADIUS];
   int gindex = threadIdx.x + (blockIdx.x * blockDim.x) + RADIUS;
   int lindex = threadIdx.x + RADIUS;
 
@@ -23,6 +23,8 @@ __global__ void stencil_1d(int *in, int *out) {
     temp[lindex - RADIUS] = in[gindex - RADIUS];
     temp[lindex + BLOCK_SIZE] = in[gindex + BLOCK_SIZE];
   }
+
+  __syncthreads();
 
   // Apply the stencil
   int result = 0;
