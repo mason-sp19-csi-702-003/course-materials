@@ -2,7 +2,8 @@ include ../../make.inc
 
 MD		=	$(HOMEWORK_DIR)/homework0.md												\
 			$(HOMEWORK_DIR)/homework1.md												\
-			$(HOMEWORK_DIR)/homework2a.md
+			$(HOMEWORK_DIR)/homework2a.md												\
+			$(HOMEWORK_DIR)/homework2c.md
 MD_EXT	=	$(HOMEWORK_DIR)/%.md : %.Rmd
 
 all : $(ALL_FILES)
