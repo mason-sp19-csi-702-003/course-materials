@@ -54,15 +54,15 @@ The syllabus is available as a Google Doc: <https://docs.google.com/document/d/1
 |  1 | [Optimize Matrix Multiplication](homework/homework1.md)                                 | Feb-23 @ 11:59pm |
 |  2 | [Parallelizing a particle simulation (Part A)](homework/homework2a.md)                  | Mar-9 @ 11:59pm  |
 |  3 | [Parallelizing a particle simulation (Part B)](https://classroom.github.com/g/gEjswJXz) | Apr-6 @ 11:59pm  |
-|  4 | Parallelizing a particle simulation (Part C)                                            | Apr-20 @ 11:59pm |
+|  4 | [Parallelizing a particle simulation (Part C)](homework/homework2c.md)                  | Apr-28 @ 11:59pm |
 
 ## Final project
 
-| Description                  | Due date        |
-| :--------------------------- | :-------------- |
-| Final project proposal       | Apr-5 @ 11:59pm |
-| Final project report w/ code | May-8 @ 11:59pm |
-| Final project presentation   | May-13 @ 4:30pm |
+| Description                                                                                               | Due date        |
+| :-------------------------------------------------------------------------------------------------------- | :-------------- |
+| [Final project proposal](https://docs.google.com/document/d/1-mP0LZY0a5m3WhI7J1Yj_RWD8aPpTjU4-v1d5Lu2hIM) | Apr-7 @ 11:59pm |
+| Final project report w/ code                                                                              | May-8 @ 11:59pm |
+| Final project presentation                                                                                | May-13 @ 4:30pm |
 
 ## Resources and links
 
